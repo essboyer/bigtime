@@ -45,6 +45,7 @@ dependencies:
   desktop_window:
   macos_ui:
   fluent_ui:
+  bitsdojo_window:
 
 dev_dependencies:
   flutter_test:
