@@ -1,4 +1,6 @@
+import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
+import 'package:resizable_widget/resizable_widget.dart';
 
 import 'widgets/time_in_hours_and_minutes.dart';
 
@@ -13,11 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'bigtime',
-      theme: ThemeData(
-        backgroundColor: Colors.black,
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData.dark(),
       home: const MyHomePage(title: 'bigtime'),
     );
   }
@@ -34,12 +34,34 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
+  void initState() {
+    super.initState();
+    _getWindowSize();
+  }
+
+  String _windowSize = "";
+
+  Future _getWindowSize() async {
+    var size = await DesktopWindow.setWindowSize(const Size(1200, 300));
+    // setState(() {
+    //   _windowSize = '${size.width} x ${size.height}';
+    //   print(_windowSize);
+    // });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   toolbarHeight: 40,
+      //   actions: const [
+      //     IconButton(onPressed: null, icon: Icon(Icons.settings))
+      //   ],
+      // ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[TimeInHourAndMinute()],
+        child: ResizableWidget(
+          //mainAxisAlignment: MainAxisAlignment.center,
+          children: const <Widget>[FittedBox(child: TimeInHourAndMinute())],
         ),
       ),
     );

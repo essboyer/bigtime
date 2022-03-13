@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'dart:ui';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class TimeInHourAndMinute extends StatefulWidget {
+  const TimeInHourAndMinute({Key? key}) : super(key: key);
+
   @override
   _TimeInHourAndMinuteState createState() => _TimeInHourAndMinuteState();
 }
@@ -13,14 +16,16 @@ class _TimeInHourAndMinuteState extends State<TimeInHourAndMinute> {
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 1), (timer) {
-      _timeStr =
-          "${_timeOfDay.hour}:${_timeOfDay.minute}:${_timeOfDay.second < 10 ? "0" : ""}${_timeOfDay.second}";
-      //if (_timeOfDay.minute != TimeOfDay.now().minute) {
+    Timer.periodic(const Duration(milliseconds: 1), (timer) {
+      _timeStr = "${_timeOfDay.hour < 10 ? "0" : ""}${_timeOfDay.hour}:"
+          "${_timeOfDay.minute < 10 ? "0" : ""}${_timeOfDay.minute}:"
+          "${_timeOfDay.second < 10 ? "0" : ""}${_timeOfDay.second}";
+      // "${_timeOfDay.millisecond < 10 ? "0" : ""}"
+      // "${_timeOfDay.millisecond < 100 ? "0" : ""}"
+      // ":${_timeOfDay.millisecond}";
       setState(() {
         _timeOfDay = DateTime.now();
       });
-      //}
     });
   }
 
@@ -35,11 +40,10 @@ class _TimeInHourAndMinuteState extends State<TimeInHourAndMinute> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          // if you use _timeOfDay.hour then it will show 20:10 like that
-          // But we want 8:10
           _timeStr,
+          // minFontSize: 200,
+          // maxFontSize: 400,
           style: const TextStyle(
-            fontSize: 200,
             fontWeight: FontWeight.bold,
             fontFeatures: [FontFeature.tabularFigures()],
           ),

@@ -35,7 +35,16 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  ## Put all yer addon packages here, mate!
   stacked:
+  auto_size_text:
+  font_awesome_flutter:
+  resizable_widget:
+
+  #OS Customization crap
+  desktop_window:
+  macos_ui:
+  fluent_ui:
 
 dev_dependencies:
   flutter_test:
