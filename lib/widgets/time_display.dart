@@ -3,14 +3,14 @@ import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-class TimeInHourAndMinute extends StatefulWidget {
-  const TimeInHourAndMinute({Key? key}) : super(key: key);
+class TimeDisplay extends StatefulWidget {
+  const TimeDisplay({Key? key}) : super(key: key);
 
   @override
-  _TimeInHourAndMinuteState createState() => _TimeInHourAndMinuteState();
+  _TimeDisplayState createState() => _TimeDisplayState();
 }
 
-class _TimeInHourAndMinuteState extends State<TimeInHourAndMinute> {
+class _TimeDisplayState extends State<TimeDisplay> {
   DateTime _timeOfDay = DateTime.now();
   String _timeStr = "00";
   @override
@@ -36,19 +36,11 @@ class _TimeInHourAndMinuteState extends State<TimeInHourAndMinute> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          _timeStr,
-          // minFontSize: 200,
-          // maxFontSize: 400,
+    return FittedBox(
+      child: Text(_timeStr,
           style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontFeatures: [FontFeature.tabularFigures()],
-          ),
-        ),
-      ],
+              fontWeight: FontWeight.bold,
+              fontFeatures: [FontFeature.tabularFigures()])),
     );
   }
 }

@@ -43,9 +43,14 @@ dependencies:
 
   #OS Customization crap
   desktop_window:
+  window_size:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
+
   macos_ui:
   fluent_ui:
-  bitsdojo_window:
+  #bitsdojo_window:
 
 dev_dependencies:
   flutter_test:

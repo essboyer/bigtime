@@ -1,11 +1,26 @@
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:resizable_widget/resizable_widget.dart';
+import 'package:window_size/window_size.dart';
 
-import 'widgets/time_in_hours_and_minutes.dart';
+import 'utils/platform_utils.dart';
+import 'widgets/time_display.dart';
 
 void main() {
+  setupScreen();
   runApp(const MyApp());
+}
+
+void setupScreen() async {
+  Size maxWindowSize;
+
+  // No full screen for us, by default
+  if (PlatformUtils.isDesktop()) {
+    maxWindowSize = await getWindowMaxSize();
+    DesktopWindow.setWindowSize(Size(
+        maxWindowSize.width - (maxWindowSize.width / 60),
+        maxWindowSize.height - maxWindowSize.height / 60));
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -61,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: ResizableWidget(
           //mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[FittedBox(child: TimeInHourAndMinute())],
+          children: const <Widget>[TimeDisplay()],
         ),
       ),
     );
