@@ -1,12 +1,14 @@
+import 'dart:io';
+
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:resizable_widget/resizable_widget.dart';
 import 'package:window_size/window_size.dart';
 
-import 'utils/platform_utils.dart';
 import 'widgets/time_display.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   setupScreen();
   runApp(const MyApp());
 }
@@ -15,11 +17,12 @@ void setupScreen() async {
   Size maxWindowSize;
 
   // No full screen for us, by default
-  if (PlatformUtils.isDesktop()) {
-    maxWindowSize = await getWindowMaxSize();
-    DesktopWindow.setWindowSize(Size(
-        maxWindowSize.width - (maxWindowSize.width / 60),
-        maxWindowSize.height - maxWindowSize.height / 60));
+  if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
+    Screen? scr = await getCurrentScreen();
+    double width = scr?.frame.width ?? 0;
+    double height = scr?.frame.height ?? 0;
+    DesktopWindow.setWindowSize(
+        Size(width - (width * 0.5), height - (height * 0.8)));
   }
 }
 
@@ -57,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _windowSize = "";
 
   Future _getWindowSize() async {
-    var size = await DesktopWindow.setWindowSize(const Size(1200, 300));
+    //var size = await DesktopWindow.setWindowSize(const Size(1200, 300));
     // setState(() {
     //   _windowSize = '${size.width} x ${size.height}';
     //   print(_windowSize);

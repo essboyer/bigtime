@@ -6,7 +6,7 @@ import 'package:window_size/window_size.dart';
 class PlatformUtils {
   // Is the device a desktop device?
   static bool isDesktop() {
-    return Platform.isIOS || Platform.isLinux || Platform.isWindows;
+    return Platform.isMacOS || Platform.isLinux || Platform.isWindows;
   }
 
   // Is the device a mobile device?
