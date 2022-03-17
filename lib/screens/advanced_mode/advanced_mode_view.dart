@@ -11,6 +11,6 @@ class AdvancedModeView extends StatelessWidget {
     return ViewModelBuilder<AdvancedModeViewModel>.reactive(
         viewModelBuilder: () => AdvancedModeViewModel(),
         onModelReady: (viewModel) => viewModel.initialise(),
-        builder: (context, viewModel, child) => Scaffold());
+        builder: (context, viewModel, child) => const Scaffold());
   }
 }
