@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:resizable_widget/resizable_widget.dart';
 
 class TimeDisplay extends StatefulWidget {
   const TimeDisplay({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _TimeDisplayState extends State<TimeDisplay> {
   @override
   void initState() {
     super.initState();
-    Timer.periodic(const Duration(milliseconds: 1), (timer) {
+    Timer.periodic(const Duration(milliseconds: 100), (timer) {
       _timeStr = "${_timeOfDay.hour < 10 ? "0" : ""}${_timeOfDay.hour}:"
           "${_timeOfDay.minute < 10 ? "0" : ""}${_timeOfDay.minute}:"
           "${_timeOfDay.second < 10 ? "0" : ""}${_timeOfDay.second}";
