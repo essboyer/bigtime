@@ -25,16 +25,18 @@ class TimeDisplay extends StatefulWidget {
 
 class _TimeDisplayState extends State<TimeDisplay> {
   DateTime _timeOfDay = DateTime.now();
+  Timer? _timer;
   String _timeStr = "00";
 
   @override
   void initState() {
     super.initState();
-    _runClock();
+    _timer ??= Timer.periodic(const Duration(milliseconds: 100), _runClock);
   }
 
   @override
   void dispose() {
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -49,18 +51,16 @@ class _TimeDisplayState extends State<TimeDisplay> {
     );
   }
 
-  void _runClock() {
-    Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      _timeStr = "${_timeOfDay.hour < 10 ? "0" : ""}${_timeOfDay.hour}:"
-          "${_timeOfDay.minute < 10 ? "0" : ""}${_timeOfDay.minute}:"
-          "${_timeOfDay.second < 10 ? "0" : ""}${_timeOfDay.second}";
-      if (widget.showMillisecond) {
-        _timeStr +=
-            ":${_timeOfDay.millisecond < 100 ? 0 : _timeOfDay.millisecond.toString().substring(0, widget.millisPrecision)}";
-      }
-      setState(() {
-        _timeOfDay = DateTime.now();
-      });
+  void _runClock(Timer timer) {
+    _timeStr = "${_timeOfDay.hour < 10 ? "0" : ""}${_timeOfDay.hour}:"
+        "${_timeOfDay.minute < 10 ? "0" : ""}${_timeOfDay.minute}:"
+        "${_timeOfDay.second < 10 ? "0" : ""}${_timeOfDay.second}";
+    if (widget.showMillisecond) {
+      _timeStr +=
+          ":${_timeOfDay.millisecond < 100 ? 0 : _timeOfDay.millisecond.toString().substring(0, widget.millisPrecision)}";
+    }
+    setState(() {
+      _timeOfDay = DateTime.now();
     });
   }
 }
