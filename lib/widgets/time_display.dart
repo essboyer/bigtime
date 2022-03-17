@@ -3,9 +3,21 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class TimeDisplay extends StatefulWidget {
+  /// Text color
   final Color color;
 
-  const TimeDisplay({Key? key, this.color = Colors.white}) : super(key: key);
+  /// Maybe you would like to see the milliseconds?
+  final bool showMillisecond;
+
+  /// The precision of milliseconds, between 1-3
+  final int millisPrecision;
+
+  const TimeDisplay(
+      {Key? key,
+      this.color = Colors.white,
+      this.showMillisecond = false,
+      this.millisPrecision = 1})
+      : super(key: key);
 
   @override
   _TimeDisplayState createState() => _TimeDisplayState();
@@ -42,9 +54,10 @@ class _TimeDisplayState extends State<TimeDisplay> {
       _timeStr = "${_timeOfDay.hour < 10 ? "0" : ""}${_timeOfDay.hour}:"
           "${_timeOfDay.minute < 10 ? "0" : ""}${_timeOfDay.minute}:"
           "${_timeOfDay.second < 10 ? "0" : ""}${_timeOfDay.second}";
-      // "${_timeOfDay.millisecond < 10 ? "0" : ""}"
-      // "${_timeOfDay.millisecond < 100 ? "0" : ""}"
-      // ":${_timeOfDay.millisecond}";
+      if (widget.showMillisecond) {
+        _timeStr +=
+            ":${_timeOfDay.millisecond < 100 ? 0 : _timeOfDay.millisecond.toString().substring(0, widget.millisPrecision)}";
+      }
       setState(() {
         _timeOfDay = DateTime.now();
       });
