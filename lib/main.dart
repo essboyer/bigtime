@@ -4,18 +4,15 @@ import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:resizable_widget/resizable_widget.dart';
 import 'package:window_size/window_size.dart';
-
 import 'widgets/time_display.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setupScreen();
-  runApp(const MyApp());
+  runApp(const BigtimeApp());
 }
 
 void setupScreen() async {
-  Size maxWindowSize;
-
   // No full screen for us, by default
   if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
     Screen? scr = await getCurrentScreen();
@@ -26,8 +23,8 @@ void setupScreen() async {
   }
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class BigtimeApp extends StatelessWidget {
+  const BigtimeApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -36,52 +33,29 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'bigtime',
       theme: ThemeData.dark(),
-      home: const MyHomePage(title: 'bigtime'),
+      home: const MainPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    super.initState();
-    _getWindowSize();
-  }
-
-  String _windowSize = "";
-
-  Future _getWindowSize() async {
-    //var size = await DesktopWindow.setWindowSize(const Size(1200, 300));
-    // setState(() {
-    //   _windowSize = '${size.width} x ${size.height}';
-    //   print(_windowSize);
-    // });
-  }
-
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   toolbarHeight: 40,
-      //   actions: const [
-      //     IconButton(onPressed: null, icon: Icon(Icons.settings))
-      //   ],
-      // ),
-      body: Center(
-        child: ResizableWidget(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[TimeDisplay()],
-        ),
-      ),
-    );
+    return Scaffold(body: _buildBody());
+  }
+
+  Widget _buildBody() {
+    return Column(children: <Widget>[
+      Expanded(
+        child: ResizableWidget(children: const [TimeDisplay()]),
+      )
+    ]);
   }
 }
