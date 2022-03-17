@@ -26,7 +26,7 @@ class TimeDisplay extends StatefulWidget {
 class _TimeDisplayState extends State<TimeDisplay> {
   DateTime _timeOfDay = DateTime.now();
   Timer? _timer;
-  String _timeStr = "00";
+  String _timeStr = "";
 
   @override
   void initState() {
