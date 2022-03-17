@@ -1,7 +1,8 @@
+import 'package:bigtime/screens/advanced_mode/advanced_mode_view.dart';
+import 'package:bigtime/screens/basic_mode/basic_mode_view.dart';
 import 'package:bigtime/screens/main_page/main_page_view_model.dart';
-import 'package:bigtime/widgets/time_display.dart';
 import 'package:flutter/material.dart';
-import 'package:resizable_widget/resizable_widget.dart';
+import 'package:mdi/mdi.dart';
 import 'package:stacked/stacked.dart';
 
 class MainPageView extends StatelessWidget {
@@ -25,20 +26,21 @@ class MainPageView extends StatelessWidget {
           IconButton(
               tooltip: 'Mode',
               onPressed: viewModel.onModeBtnPressed,
-              icon: const Icon(Icons.mode)),
+              icon: const Icon(Mdi.abTesting)),
           IconButton(
               tooltip: "Settings",
               onPressed: viewModel.onSettingsBtnPressed,
               icon: const Icon(Icons.settings))
         ],
       ),
-      Expanded(
-        child: ResizableWidget(children: const [
-          TimeDisplay(
-            showMillisecond: true,
-          )
-        ]),
-      )
+      _buildDisplayArea(viewModel),
     ]);
+  }
+
+  Widget _buildDisplayArea(MainPageViewModel viewModel) {
+    if (viewModel.advancedMode) {
+      return const AdvancedModeView();
+    }
+    return const BasicModeView();
   }
 }

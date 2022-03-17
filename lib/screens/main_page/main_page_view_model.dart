@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 
 class MainPageViewModel extends ChangeNotifier {
+  bool advancedMode = true;
+
   void initialise() {
     notifyListeners();
   }
 
   void onSettingsBtnPressed() {
-    print("Neat!!!");
+    notifyListeners();
   }
 
   void onModeBtnPressed() {
-    print("Fart mouth!");
+    toggleMode();
+    notifyListeners();
+  }
+
+  void toggleMode() {
+    advancedMode = !advancedMode;
+    notifyListeners();
   }
 }
