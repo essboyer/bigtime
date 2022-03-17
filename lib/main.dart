@@ -1,10 +1,9 @@
 import 'dart:io';
 
+import 'package:bigtime/screens/main_page/main_page_view.dart';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
-import 'package:resizable_widget/resizable_widget.dart';
 import 'package:window_size/window_size.dart';
-import 'widgets/time_display.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +25,6 @@ void setupScreen() async {
 class BigtimeApp extends StatelessWidget {
   const BigtimeApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -48,14 +46,6 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _buildBody());
-  }
-
-  Widget _buildBody() {
-    return Column(children: <Widget>[
-      Expanded(
-        child: ResizableWidget(children: const [TimeDisplay()]),
-      )
-    ]);
+    return const MainPageView();
   }
 }
