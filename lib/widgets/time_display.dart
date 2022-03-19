@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class TimeDisplay extends StatefulWidget {
@@ -43,8 +44,10 @@ class _TimeDisplayState extends State<TimeDisplay> {
   @override
   Widget build(BuildContext context) {
     return FittedBox(
-      child: Text(_timeStr,
+      fit: BoxFit.fill,
+      child: AutoSizeText(_timeStr,
           style: TextStyle(
+              height: 0.9,
               color: widget.color,
               fontWeight: FontWeight.bold,
               fontFeatures: const [FontFeature.tabularFigures()])),
