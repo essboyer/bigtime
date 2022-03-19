@@ -11,8 +11,12 @@ class SettingsScreenView extends StatelessWidget {
     return ViewModelBuilder<SettingsScreenViewModel>.reactive(
         viewModelBuilder: () => SettingsScreenViewModel(),
         onModelReady: (viewModel) => viewModel.initialise(),
-        builder: (context, viewModel, child) => Scaffold(body: _buildBody()));
+        builder: (context, viewModel, child) => Center(child: _buildBody()));
   }
 }
 
-_buildBody() {}
+Widget _buildBody() {
+  return const Center(
+    child: Text("You toy me, Moto!"),
+  );
+}

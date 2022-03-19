@@ -24,10 +24,12 @@ class MainPageView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           IconButton(
+              padding: const EdgeInsets.all(0.0),
               tooltip: 'Mode',
               onPressed: viewModel.onModeBtnPressed,
               icon: const Icon(Mdi.abTesting)),
           IconButton(
+              padding: const EdgeInsets.all(0.0),
               tooltip: "Settings",
               onPressed: viewModel.onSettingsBtnPressed,
               icon: const Icon(Icons.settings))
