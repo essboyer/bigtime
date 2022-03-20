@@ -32,11 +32,13 @@ class BigtimeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'bigtime',
-      theme: ThemeData.dark(),
-      home: const MainPage(),
+    return Consumer<AppState>(
+      builder: (context, appState, _) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'bigtime',
+        theme: ThemeData.dark(),
+        home: const MainPage(),
+      ),
     );
   }
 }
