@@ -37,6 +37,7 @@ dependencies:
 
   ## Put all yer addon packages here, mate!
   stacked:
+  stacked_services:
   provider:
   auto_size_text:
   font_awesome_flutter:
