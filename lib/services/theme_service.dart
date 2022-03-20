@@ -1,7 +1,8 @@
-import 'package:bigtime/managers/storage_manager.dart';
+import 'package:bigtime/services/local_storage_service.dart';
 import 'package:flutter/material.dart';
 
-class ThemeNotifier with ChangeNotifier {
+class ThemeService with ChangeNotifier {
+  //final ThemeService themeService = locator.
   final darkTheme = ThemeData(
     primaryColor: Colors.black,
     brightness: Brightness.dark,
@@ -23,8 +24,8 @@ class ThemeNotifier with ChangeNotifier {
   ThemeData? _themeData;
   ThemeData? getTheme() => _themeData;
 
-  ThemeNotifier() {
-    StorageManager.readData('themeMode').then((value) {
+  ThemeService() {
+    LocalStorageService.readData('themeMode').then((value) {
       var themeMode = value ?? 'light';
       if (themeMode == 'light') {
         _themeData = lightTheme;
@@ -37,13 +38,13 @@ class ThemeNotifier with ChangeNotifier {
 
   void setDarkMode() async {
     _themeData = darkTheme;
-    StorageManager.saveData('themeMode', 'dark');
+    LocalStorageService.saveData('themeMode', 'dark');
     notifyListeners();
   }
 
   void setLightMode() async {
     _themeData = lightTheme;
-    StorageManager.saveData('themeMode', 'light');
+    LocalStorageService.saveData('themeMode', 'light');
     notifyListeners();
   }
 }

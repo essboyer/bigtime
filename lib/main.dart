@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bigtime/locator.dart';
 import 'package:bigtime/main/app_state.dart';
 import 'package:bigtime/screens/main_page/main_page_view.dart';
 import 'package:desktop_window/desktop_window.dart';
@@ -9,6 +10,7 @@ import 'package:window_size/window_size.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  setupLocator();
   setupScreen();
   runApp(ChangeNotifierProvider<AppState>(
     create: (_) => AppState(),

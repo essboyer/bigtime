@@ -17,6 +17,9 @@ class AdvancedModeView extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return Expanded(child: ResizableWidget(children: const [TimeDisplay()]));
+    return Expanded(
+        child: ResizableWidget(
+            isHorizontalSeparator: true,
+            children: const [TimeDisplay(), TimeDisplay()]));
   }
 }
