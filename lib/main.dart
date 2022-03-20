@@ -1,14 +1,19 @@
 import 'dart:io';
 
+import 'package:bigtime/main/app_state.dart';
 import 'package:bigtime/screens/main_page/main_page_view.dart';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:window_size/window_size.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setupScreen();
-  runApp(const BigtimeApp());
+  runApp(ChangeNotifierProvider<AppState>(
+    create: (_) => AppState(),
+    child: const BigtimeApp(),
+  ));
 }
 
 void setupScreen() async {
