@@ -5,9 +5,10 @@ import 'package:get_it/get_it.dart';
 
 final GetIt locator = GetIt.instance;
 
-void setupLocator() {
+Future<void> setupLocator() async {
   // Services go here
+  var lssInstance = await LocalStorageService.getInstance();
+  locator.registerSingleton<LocalStorageService>(lssInstance);
   locator.registerLazySingleton(() => ThemeService());
-  locator.registerSingleton(() => LocalStorageService());
   locator.registerLazySingleton(() => ScreenSizeService());
 }

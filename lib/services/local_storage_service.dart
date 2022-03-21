@@ -1,13 +1,15 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageService {
-  late final SharedPreferences prefs;
+  static final LocalStorageService _instance = LocalStorageService();
+  static late SharedPreferences prefs;
 
-  LocalStorageService() {
-    initialise();
+  static Future<LocalStorageService> getInstance() async {
+    await _init();
+    return _instance;
   }
 
-  void initialise() async {
+  static Future<void> _init() async {
     prefs = await SharedPreferences.getInstance();
   }
 
