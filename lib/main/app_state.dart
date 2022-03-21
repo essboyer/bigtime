@@ -1,10 +1,11 @@
-import 'package:bigtime/managers/theme_manager.dart';
+import 'package:bigtime/locator.dart';
+import 'package:bigtime/services/theme_service.dart';
 import 'package:flutter/material.dart';
 
 class AppState extends ChangeNotifier {
-  final ThemeNotifier theme = ThemeNotifier();
+  final ThemeService _themeSvc = locator<ThemeService>();
 
   ThemeData? getTheme() {
-    return theme.getTheme();
+    return _themeSvc.getTheme();
   }
 }

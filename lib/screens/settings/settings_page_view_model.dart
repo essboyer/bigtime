@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SettingsScreenViewModel extends ChangeNotifier {
+class SettingsPageViewModel extends ChangeNotifier {
   void initialise() {
     notifyListeners();
+  }
+
+  void close() {
   }
 }

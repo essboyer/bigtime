@@ -46,6 +46,7 @@ dependencies:
   font_awesome:
   mdi: ^5.0.0-nullsafety.0
   shared_preferences:
+  flutter_settings_screens: ^0.3.2-null-safety
 
   #OS Customization crap
   desktop_window:
