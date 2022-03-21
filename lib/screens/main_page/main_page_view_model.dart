@@ -1,7 +1,9 @@
+import 'package:bigtime/locator.dart';
 import 'package:bigtime/services/local_storage_service.dart';
 import 'package:flutter/material.dart';
 
 class MainPageViewModel extends ChangeNotifier {
+  final storageSvc = locator<LocalStorageService>();
   bool advancedMode = false;
   bool showSettings = false;
 
@@ -11,7 +13,7 @@ class MainPageViewModel extends ChangeNotifier {
   }
 
   void getSavedMode() async {
-    final dynamic value = await LocalStorageService.readData('mode');
+    final dynamic value = await storageSvc.readData('mode');
 
     if (value is bool) {
       advancedMode = value;
@@ -26,7 +28,7 @@ class MainPageViewModel extends ChangeNotifier {
 
   void onModeBtnPressed() {
     advancedMode = !advancedMode;
-    LocalStorageService.saveData('mode', advancedMode);
+    storageSvc.saveData('mode', advancedMode);
     notifyListeners();
   }
 }

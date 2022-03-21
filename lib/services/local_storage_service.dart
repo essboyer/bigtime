@@ -1,9 +1,18 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageService {
+  late final SharedPreferences prefs;
+
+  LocalStorageService() {
+    initialise();
+  }
+
+  void initialise() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+
   /// Save a value to a KVP
-  static void saveData(String key, dynamic value) async {
-    final prefs = await SharedPreferences.getInstance();
+  void saveData(String key, dynamic value) async {
     if (value is int) {
       prefs.setInt(key, value);
     } else if (value is double) {
@@ -18,27 +27,22 @@ class LocalStorageService {
   }
 
   /// Read a value from a KVP
-  static Future<dynamic> readData(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    dynamic obj = prefs.get(key);
-    return obj;
+  Future<dynamic> readData(String key) async {
+    return prefs.get(key);
   }
 
   /// Delete a value and key from a KVP
-  static Future<bool> deleteData(String key) async {
-    final prefs = await SharedPreferences.getInstance();
+  Future<bool> deleteData(String key) async {
     return prefs.remove(key);
   }
 
   /// List of KVPs
-  static Future<Set> listAllKeys() async {
-    final prefs = await SharedPreferences.getInstance();
+  Future<Set> listAllKeys() async {
     return prefs.getKeys();
   }
 
   /// Does a key exist?
-  static Future<bool> hasKey(String key) async {
-    final prefs = await SharedPreferences.getInstance();
+  Future<bool> hasKey(String key) async {
     return prefs.containsKey(key);
   }
 }

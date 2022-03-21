@@ -8,6 +8,6 @@ final GetIt locator = GetIt.instance;
 void setupLocator() {
   // Services go here
   locator.registerLazySingleton(() => ThemeService());
-  locator.registerLazySingleton(() => LocalStorageService());
+  locator.registerSingleton(() => LocalStorageService());
   locator.registerLazySingleton(() => ScreenSizeService());
 }
