@@ -34,7 +34,7 @@ class MainPageView extends StatelessWidget {
               padding: const EdgeInsets.all(0.0),
               tooltip: "Settings",
               onPressed: viewModel.onSettingsBtnPressed,
-              icon: const Icon(Mdi.cog))
+              icon: Icon(viewModel.showSettings ? Mdi.close : Mdi.cog))
         ],
       ),
       _buildDisplayArea(viewModel),
