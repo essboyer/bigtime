@@ -10,6 +10,15 @@ class MainPageViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void getSavedMode() async {
+    final dynamic value = await LocalStorageService.readData('mode');
+
+    if (value is bool) {
+      advancedMode = value;
+      notifyListeners();
+    }
+  }
+
   void onSettingsBtnPressed() {
     showSettings = !showSettings;
     notifyListeners();
@@ -19,14 +28,5 @@ class MainPageViewModel extends ChangeNotifier {
     advancedMode = !advancedMode;
     LocalStorageService.saveData('mode', advancedMode);
     notifyListeners();
-  }
-
-  getSavedMode() async {
-    dynamic value = await LocalStorageService.readData('mode');
-
-    if (value is bool) {
-      advancedMode = value;
-      notifyListeners();
-    }
   }
 }
