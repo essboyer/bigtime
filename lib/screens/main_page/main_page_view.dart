@@ -32,7 +32,7 @@ class MainPageView extends StatelessWidget {
               icon: Icon(viewModel.advancedMode ? Mdi.alphaA : Mdi.alphaB)),
           IconButton(
               padding: const EdgeInsets.all(0.0),
-              tooltip: "Settings",
+              tooltip: viewModel.showSettings ? 'Close' : 'Settings',
               onPressed: viewModel.onSettingsBtnPressed,
               icon: Icon(viewModel.showSettings ? Mdi.close : Mdi.cog))
         ],
