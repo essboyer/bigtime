@@ -46,11 +46,11 @@ class _TimeDisplayState extends State<TimeDisplay> {
     return FittedBox(
       fit: BoxFit.fill,
       child: AutoSizeText(_timeStr,
-          style: TextStyle(
+          style: const TextStyle(
               height: 0.9,
-              color: widget.color,
+              //color: widget.color,
               fontWeight: FontWeight.bold,
-              fontFeatures: const [FontFeature.tabularFigures()])),
+              fontFeatures: [FontFeature.tabularFigures()])),
     );
   }
 
