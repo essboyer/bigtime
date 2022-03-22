@@ -11,17 +11,25 @@ class SettingsPageView extends StatelessWidget {
     return ViewModelBuilder<SettingsPageViewModel>.reactive(
         viewModelBuilder: () => SettingsPageViewModel(),
         onModelReady: (viewModel) => viewModel.initialise(),
-        builder: (context, viewModel, child) => _buildBody(viewModel));
+        builder: (context, viewModel, child) => _buildBody(context, viewModel));
   }
 }
 
-Widget _buildBody(SettingsPageViewModel viewModel) {
+Widget _buildBody(BuildContext context, SettingsPageViewModel viewModel) {
   return Expanded(
-    child: Column(
-      children: [
-        Row(children: [Text("Dark Mode"), ]),
-        ElevatedButton(onPressed: viewModel.close, child: Text("Done"))
+      child: Column(children: [
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        const Text('Light mode'),
+        Switch(
+            activeColor: Theme.of(context).colorScheme.secondary,
+            value: viewModel.themeService.isDarkMode(),
+            onChanged: (newVal) {
+              viewModel.themeService.setThemeMode(newVal);
+            }),
+        const Text('Dark mode'),
       ],
     ),
-  );
+  ]));
 }

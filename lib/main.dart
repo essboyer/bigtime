@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bigtime/locator.dart';
 import 'package:bigtime/main/app_state.dart';
 import 'package:bigtime/screens/main_page/main_page_view.dart';
+import 'package:bigtime/services/theme_service.dart';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,7 @@ void main() async {
   setupScreen();
   runApp(ChangeNotifierProvider<AppState>(
     create: (_) => AppState(),
-    child: const BigtimeApp(),
+    child: BigtimeApp(),
   ));
 }
 
@@ -30,7 +31,8 @@ void setupScreen() async {
 }
 
 class BigtimeApp extends StatelessWidget {
-  const BigtimeApp({Key? key}) : super(key: key);
+  BigtimeApp({Key? key}) : super(key: key);
+  final ThemeService ts = locator<ThemeService>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class BigtimeApp extends StatelessWidget {
       builder: (context, appState, _) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'bigtime',
-        theme: ThemeData.dark(),
+        theme: appState.getTheme(),
         home: const MainPage(),
       ),
     );
