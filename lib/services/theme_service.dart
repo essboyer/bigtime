@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bigtime/locator.dart';
 import 'package:bigtime/services/local_storage_service.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +15,14 @@ class ThemeService with ChangeNotifier {
       );
 
   final lightTheme = ThemeData.light(
-      // primaryColor: Colors.white,
-      // brightness: Brightness.light,
-      // backgroundColor: const Color(0xFFE5E5E5),
-      // dividerColor: Colors.white54,
-      //colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
-      // .copyWith(secondary: Colors.black),
-      );
+          // primaryColor: Colors.white,
+          // brightness: Brightness.light,
+          // backgroundColor: const Color(0xFFE5E5E5),
+          // dividerColor: Colors.white54,
+          //colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
+          // .copyWith(secondary: Colors.black),
+          )
+      .copyWith(primaryColor: Colors.black);
 
   ThemeData? _themeData;
   ThemeData? getTheme() => _themeData;

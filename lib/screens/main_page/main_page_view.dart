@@ -20,25 +20,27 @@ class MainPageView extends StatelessWidget {
   }
 
   Widget _buildBody(MainPageViewModel viewModel) {
-    return Column(children: <Widget>[
-      Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          IconButton(
-              padding: const EdgeInsets.all(0.0),
-              tooltip:
-                  (viewModel.advancedMode ? 'Advanced' : 'Basic') + ' Mode',
-              onPressed: viewModel.onModeBtnPressed,
-              icon: Icon(viewModel.advancedMode ? Mdi.alphaA : Mdi.alphaB)),
-          IconButton(
-              padding: const EdgeInsets.all(0.0),
-              tooltip: viewModel.showSettings ? 'Close' : 'Settings',
-              onPressed: viewModel.onSettingsBtnPressed,
-              icon: Icon(viewModel.showSettings ? Mdi.close : Mdi.cog))
-        ],
-      ),
-      _buildDisplayArea(viewModel),
-    ]);
+    return LayoutBuilder(builder: (context, constraints) {
+      return Column(children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            IconButton(
+                padding: const EdgeInsets.all(0.0),
+                tooltip:
+                    (viewModel.advancedMode ? 'Advanced' : 'Basic') + ' Mode',
+                onPressed: viewModel.onModeBtnPressed,
+                icon: Icon(viewModel.advancedMode ? Mdi.alphaA : Mdi.alphaB)),
+            IconButton(
+                padding: const EdgeInsets.all(0.0),
+                tooltip: viewModel.showSettings ? 'Close' : 'Settings',
+                onPressed: viewModel.onSettingsBtnPressed,
+                icon: Icon(viewModel.showSettings ? Mdi.close : Mdi.cog))
+          ],
+        ),
+        _buildDisplayArea(viewModel),
+      ]);
+    });
   }
 
   Widget _buildDisplayArea(MainPageViewModel viewModel) {

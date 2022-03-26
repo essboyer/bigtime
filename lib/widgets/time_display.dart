@@ -47,6 +47,7 @@ class _TimeDisplayState extends State<TimeDisplay> {
       fit: BoxFit.fill,
       child: AutoSizeText(_timeStr,
           style: const TextStyle(
+              fontFamily: "Digital-7",
               height: 0.9,
               //color: widget.color,
               fontWeight: FontWeight.bold,

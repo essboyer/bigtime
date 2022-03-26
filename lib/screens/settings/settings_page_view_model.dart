@@ -9,5 +9,10 @@ class SettingsPageViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void switchTheme(bool isDark) {
+    themeService.setThemeMode(isDark);
+    notifyListeners();
+  }
+
   void close() {}
 }

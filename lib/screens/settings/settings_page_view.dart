@@ -26,7 +26,7 @@ Widget _buildBody(BuildContext context, SettingsPageViewModel viewModel) {
             activeColor: Theme.of(context).colorScheme.secondary,
             value: viewModel.themeService.isDarkMode(),
             onChanged: (newVal) {
-              viewModel.themeService.setThemeMode(newVal);
+              viewModel.switchTheme(newVal);
             }),
         const Text('Dark mode'),
       ],
