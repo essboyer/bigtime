@@ -4,6 +4,7 @@ import 'package:bigtime/locator.dart';
 import 'package:bigtime/main/app_state.dart';
 import 'package:bigtime/screens/main_page/main_page_view.dart';
 import 'package:bigtime/services/theme_service.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,14 @@ void main() async {
     create: (_) => AppState(),
     child: BigtimeApp(),
   ));
+
+  doWhenWindowReady(() {
+    const initialSize = Size(800, 300);
+    appWindow.minSize = initialSize;
+    appWindow.size = initialSize;
+    appWindow.alignment = Alignment.center;
+    appWindow.show();
+  });
 }
 
 void setupScreen() async {

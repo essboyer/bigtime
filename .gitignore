@@ -48,3 +48,4 @@ pubspec.lock
 macos/Podfile.lock
 macos/Flutter/GeneratedPluginRegistrant.swift
 windows/flutter/generated_plugins.cmake
+macos/Flutter/GeneratedPluginRegistrant.swift
